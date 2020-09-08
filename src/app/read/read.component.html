@@ -1,0 +1,32 @@
+<div class = applicantsHolder *ngIf="applicantObjects">
+    <table id="applicantsTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Loan Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+                <ngcontainer *ngFor="let applicant of applicantObjects | async"> 
+                    <td>{{ applicant.name }}</td>
+                    <td>{{ applicant.email }}</td>
+                    <td>{{ applicant.phoneNumber }}</td>
+                    <td>{{ applicant.loanAmount }}</td>
+                    <td>{{ applicant.softDelete }}</td>
+                    <td>
+                        <tr>
+                            <a (click)="editApplicant(applicant)" class="link">Edit</a>
+                        </tr>
+                        <tr>
+                            <a (click)="deleteApplicant(applicant)" class="link">Delete</a>
+                        </tr>
+                        <tr>
+                            <a (click)="softDeleteApplicant(applicant)" class="link">Soft Delete</a>
+                        </tr>
+                    </td>
+                </ngcontainer>
+        </tbody>
+    </table>
+</div>
