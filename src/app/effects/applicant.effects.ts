@@ -3,8 +3,6 @@ import { Actions, ofType, createEffect } from '@ngrx/effects'
 import { map, concatMap } from 'rxjs/operators'
 import { ApplicantService } from '../services/applicant-service.service'
 import * as ApplicantActions from '../actions/applicant.actions'
-import { Update } from '@ngrx/entity'
-import { Applicant } from '../models/applicant.model'
 
 @Injectable()
 export class ApplicantEffects {
@@ -25,9 +23,9 @@ export class ApplicantEffects {
   addApplicant = createEffect(() => 
     this.actions.pipe(
           ofType(ApplicantActions.addApplicant),
-          concatMap((action) => this.applicantService.add(action.applicant))
-          ),
-          { dispatch: false }
+          concatMap((action) => this.applicantService.add(action.applicant)),
+          map(applicant => ApplicantActions.applicantAdded({applicant}))
+          )
   );
 
   deleteApplicant = createEffect(() =>
@@ -42,8 +40,7 @@ export class ApplicantEffects {
     this.actions.pipe(
           ofType(ApplicantActions.updateApplicant),
           concatMap((action) => this.applicantService.update((action.update.id), action.update))
-          ),
-          { dispatch: false }
+          )
   );
-
+  
 }

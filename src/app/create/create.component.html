@@ -1,4 +1,4 @@
-<div id= "editForm" *ngIf="applicantObjectUnderEdit | async as applicantEdit; else addApplicant">
+<div id= "editForm" *ngIf="applicantObjectUnderEdit | async as applicantEdit">
     <h2>Edit Applicant</h2>
     <form [formGroup]="applicantEditGroup" (ngSubmit)="editApplicant(applicantEdit.id)">
         Name: {{applicantEdit.name}}
@@ -21,31 +21,30 @@
             <input type="text" id="applicantLoanAmount" name="applicantLoanAmount"  formControlName="loanAmount" class="form-control">
         </div>
         <br>
-        <button type="submit" class="btn btn-primary" (click)="(applicantEdit.id)">Save</button>
+        <button type="submit" class="btn btn-primary">Save</button>
     </form>
 </div>
 
-<ng-template #addApplicant>
     <div id= "addForm">
         <h2>Add New Applicant</h2>
-        <form>
+        <form [formGroup]="applicantAddGroup" (ngSubmit)="addApplicant()">
             <div class = "form-group">
                 <label for="applicantName">Applicant Name</label>
-                <input type="text" id="applicantName" name="applicantName" [(ngModel)]="applicantObject.name" class="form-control">
+                <input type="text" id="applicantName" name="applicantName" formControlName="name" class="form-control">
             </div>
             <div class = "form-group">
                 <label for="applicantEmail">Applicant Email</label>
-                <input type="text" id="applicantEmail" name="applicantEmail" [(ngModel)]="applicantObject.email" class="form-control">
+                <input type="text" id="applicantEmail" name="applicantEmail" formControlName="email" class="form-control">
             </div>
             <div class = "form-group">
                 <label for="applicantPhoneNumber">Applicant Phone Number</label>
-                <input type="text" id="applicantPhoneNumber" name="applicantPhoneNumber" [(ngModel)]="applicantObject.phoneNumber" class="form-control">
+                <input type="text" id="applicantPhoneNumber" name="applicantPhoneNumber" formControlName="phoneNumber" class="form-control">
             </div>
             <div class = "form-group">
                 <label for="applicantLoanAmount">Applicant Loan Amount</label>
-                <input type="text" id="applicantLoanAmount" name="applicantLoanAmount" [(ngModel)]="applicantObject.loanAmount" class="form-control">
+                <input type="text" id="applicantLoanAmount" name="applicantLoanAmount" formControlName="loanAmount" class="form-control">
             </div>
-            <button type="button" class="btn btn-primary" (click)="addApplicant($event)">Save</button>
+            <br>
         </form>
+        <button type="submit" class="btn btn-primary" (click)="addApplicant()">Save</button>
     </div>
-</ng-template>

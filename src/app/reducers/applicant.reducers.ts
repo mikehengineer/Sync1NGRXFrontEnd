@@ -15,8 +15,11 @@ export const initialState: ApplicantState = adapter.getInitialState({
 
 export const _applicantReducer = createReducer(
     initialState,
-    on(applicantActions.addApplicant, (state, action) => {
+    on(applicantActions.applicantAdded, (state, action) => {
       return adapter.addOne(action.applicant, state)
+    }),
+    on(applicantActions.updateApplicant, (state, action) => {
+      return adapter.setOne(action.update, state)
     }),
     on(applicantActions.applicantsLoaded, (state, action) => {
       return adapter.setAll(action.applicants, state)

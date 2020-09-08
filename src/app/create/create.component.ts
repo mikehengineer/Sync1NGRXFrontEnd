@@ -3,12 +3,8 @@ import { AppState } from '../reducers/app.state';
 import { Store } from '@ngrx/store';
 import { Applicant } from '../models/applicant.model';
 import { addApplicant, updateApplicant, clearUpdateApplicant } from '../actions/applicant.actions';
-import { ApplicantEffects } from '../effects/applicant.effects';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { fetchApplicantOnEdit } from '../selectors/applicant.selectors';
-import { Update } from '@ngrx/entity';
-import { map } from 'rxjs/operators';
-import { NgForm } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -23,7 +19,13 @@ export class CreateComponent implements OnInit {
   applicantObjectUnderEdit: Observable<Applicant>;
 
   applicantEditGroup = new FormGroup({
-    id: new FormControl(''),
+    name: new FormControl(''),
+    email: new FormControl(''),
+    phoneNumber: new FormControl(''),
+    loanAmount: new FormControl('')
+  });
+
+  applicantAddGroup = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
     phoneNumber: new FormControl(''),
@@ -34,14 +36,24 @@ export class CreateComponent implements OnInit {
      this.applicantObjectUnderEdit = store.select(fetchApplicantOnEdit);
   }
 
-   public addApplicant(event){
+   addApplicant(){
+    const { name, email, phoneNumber, loanAmount } = this.applicantAddGroup.value;
+    this.applicantObject = {
+       id: 0,
+       name: name,
+       email: email,
+       phoneNumber: phoneNumber,
+       loanAmount: loanAmount,
+       softDelete: 'false'
+     }
     const applicant = {} as Applicant;
     Object.assign(applicant, this.applicantObject);
     this.store.dispatch(addApplicant({applicant}));
+    this.applicantAddGroup.reset();
    }
 
    editApplicant(id) {
-     const { name, email, phoneNumber, loanAmount, } = this.applicantEditGroup.value;
+     const { name, email, phoneNumber, loanAmount } = this.applicantEditGroup.value;
      this.applicantObject = {
         id: id,
         name: name,

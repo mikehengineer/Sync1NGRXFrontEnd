@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Applicant } from '../models/applicant.model';
-import { Update } from '@ngrx/entity';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,6 @@ import { Update } from '@ngrx/entity';
 export class ApplicantService {
   private headers: HttpHeaders;
   private applicantsAPI = 'https://localhost:44382/api/applicants';
- 
 
   constructor(private http: HttpClient) { 
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
@@ -31,5 +29,4 @@ export class ApplicantService {
   public update(updateId: number, updateChanges: Partial<Applicant>): Observable<any>{
     return this.http.put(this.applicantsAPI + '/' + updateId, updateChanges, {headers: this.headers});
   }
-
 }
