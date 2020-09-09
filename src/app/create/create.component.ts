@@ -6,6 +6,7 @@ import { addApplicant, updateApplicant, clearUpdateApplicant } from '../actions/
 import { Observable } from 'rxjs';
 import { fetchApplicantOnEdit } from '../selectors/applicant.selectors';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ApplicantEffects } from '../effects/applicant.effects';
 
 @Component({
   selector: 'app-create',
@@ -14,11 +15,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 
 export class CreateComponent implements OnInit {
-  viewFormObject: Object;
   applicantObject: Applicant;
   applicantObjectUnderEdit: Observable<Applicant>;
 
   applicantEditGroup = new FormGroup({
+    id: new FormControl(''),
     name: new FormControl(''),
     email: new FormControl(''),
     phoneNumber: new FormControl(''),
@@ -52,7 +53,9 @@ export class CreateComponent implements OnInit {
     this.applicantAddGroup.reset();
    }
 
-   editApplicant(id) {
+   editApplicant() {
+     let id = 0;
+     const editApplicantObserver = this.applicantObjectUnderEdit.subscribe(applicant => id = applicant.id);
      const { name, email, phoneNumber, loanAmount } = this.applicantEditGroup.value;
      this.applicantObject = {
         id: id,
