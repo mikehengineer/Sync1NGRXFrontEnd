@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, State } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { Applicant } from '../models/applicant.model'
 import * as applicantActions from '../actions/applicant.actions'
@@ -30,7 +30,7 @@ export const _applicantReducer = createReducer(
     on(applicantActions.loadEditedApplicant, (state, action) => {
         return {...state, applicantOnEdit:action.applicant}
     }),
-    on(applicantActions.clearUpdateApplicant, (state, action) => {
+    on(applicantActions.clearUpdateApplicant, (state) => {
         return {...state, applicantOnEdit: null}
     })
   );

@@ -39,8 +39,8 @@ export class ApplicantEffects {
   updateApplicant = createEffect(() =>
     this.actions.pipe(
           ofType(ApplicantActions.updateApplicant),
-          concatMap((action) => this.applicantService.update((action.update.id), action.update))
+          concatMap((action) => this.applicantService.update((action.update.id), action.update)),
+          map(ApplicantActions.clearUpdateApplicant)
           )
   );
-  
 }

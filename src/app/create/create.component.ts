@@ -39,7 +39,7 @@ export class CreateComponent implements OnInit {
 
    addApplicant(){
     const { name, email, phoneNumber, loanAmount } = this.applicantAddGroup.value;
-    this.applicantObject = {
+    const applicant:Applicant = {
        id: 0,
        name: name,
        email: email,
@@ -47,29 +47,24 @@ export class CreateComponent implements OnInit {
        loanAmount: loanAmount,
        softDelete: 'false'
      }
-    const applicant = {} as Applicant;
-    Object.assign(applicant, this.applicantObject);
     this.store.dispatch(addApplicant({applicant}));
     this.applicantAddGroup.reset();
    }
 
    editApplicant() {
-     let id = 0;
-     const editApplicantObserver = this.applicantObjectUnderEdit.subscribe(applicant => id = applicant.id);
      const { name, email, phoneNumber, loanAmount } = this.applicantEditGroup.value;
-     this.applicantObject = {
-        id: id,
+     const update:Applicant = {
+        id: 0,
         name: name,
         email: email,
         phoneNumber: phoneNumber,
         loanAmount: loanAmount,
         softDelete: 'false'
       }
-      const update = {} as Applicant;
-      Object.assign(update, this.applicantObject);
+      const editApplicantObserver = this.applicantObjectUnderEdit.subscribe(applicant => update.id = applicant.id);
+      editApplicantObserver.unsubscribe();
       this.store.dispatch(updateApplicant({update}));
-      this.applicantEditGroup.reset()
-      this.store.dispatch(clearUpdateApplicant(null));
+      this.applicantEditGroup.reset();
     }
     
   ngOnInit() {

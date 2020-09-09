@@ -7,7 +7,7 @@ export const addApplicant = createAction('[Applicant/API] Add Applicant', props<
 export const applicantAdded = createAction('[Applicant/API] Applicant Added', props<{ applicant: Applicant }>());
 export const deleteApplicant = createAction('[Applicant/API] Delete Applicant', props<{ applicant: Applicant }>());
 export const updateApplicant = createAction('[Applicant/API] Update Applicant', props<{ update: Applicant }>());
-export const clearUpdateApplicant = createAction('[Applicant/API] Clear Update Applicant', props<{ null }>());
+export const clearUpdateApplicant = createAction('[Applicant/API] Clear Update Applicant');
 export const loadEditedApplicant = createAction('[Applicant/API] Load Applicant For Edit', props<{applicant: Applicant }>());
 
 export const applicantActionTypes = {
