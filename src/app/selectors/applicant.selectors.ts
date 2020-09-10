@@ -1,12 +1,13 @@
 import { ApplicantState } from '../reducers/applicant.reducers';
 import { createSelector } from '@ngrx/store';
 import { selectAll } from '../reducers/applicant.reducers';
-import { getApplicantsState } from '../reducers/index'
+import { getApplicantsState, getRouterState } from '../reducers/index'
+import { RouterReducerState } from '@ngrx/router-store';
 
 
 export const getApplicantState = createSelector(
   getApplicantsState,
-  state => state.applicantState
+  (state: ApplicantState) => state
 );
 
 export const getAllApplicants = createSelector(
@@ -17,4 +18,9 @@ export const getAllApplicants = createSelector(
 export const fetchApplicantOnEdit = createSelector(
     getApplicantState,
     state => state.applicantOnEdit
+);
+
+export const getCurrentRouteState = createSelector(
+  getRouterState,
+  (state: RouterReducerState) => state.state
 );

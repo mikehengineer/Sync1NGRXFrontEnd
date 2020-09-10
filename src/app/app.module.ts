@@ -12,6 +12,8 @@ import { ApplicantEffects } from './effects/applicant.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from './routing/customserializer';
+import { AppRoutingModule } from './routing/routing.module'
 
 @NgModule({
   declarations: [
@@ -25,8 +27,13 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot({}),
-    StoreModule.forFeature('appstate', Reducers),
+    StoreModule.forRoot(Reducers),
+    // StoreModule.forFeature('appstate', Reducers),
     EffectsModule.forRoot([ApplicantEffects]),
+    AppRoutingModule,
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer,
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     })

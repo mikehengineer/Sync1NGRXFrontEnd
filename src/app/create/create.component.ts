@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { fetchApplicantOnEdit } from '../selectors/applicant.selectors';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ApplicantState } from '../reducers/applicant.reducers';
+import { AppState } from '../reducers';
 
 @Component({
   selector: 'app-create',
@@ -32,7 +33,7 @@ export class CreateComponent implements OnInit {
     loanAmount: new FormControl('')
   });
 
-  constructor(private store: Store<ApplicantState>) {
+  constructor(private store: Store<AppState>) {
      this.applicantObjectUnderEdit = store.select(fetchApplicantOnEdit);
   }
 
