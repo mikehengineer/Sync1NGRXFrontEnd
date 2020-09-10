@@ -1,3 +1,6 @@
+# In Addition To The Steps Below:
+Simply change the https://localhost:44382/api/applicants URL found in the src/app/applicant/services/applicantAPI.service.ts file to a backend service you have running on your network.  One is available at https://github.com/mikehengineer/Sync1Demo The backend software found at that link is a Asp.Net Core 3.1 server written in C# with a MSSql database. 
+
 # NGRXFrontEnd
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.8.
