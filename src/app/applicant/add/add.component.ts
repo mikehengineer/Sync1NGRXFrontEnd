@@ -23,7 +23,7 @@ export class AddComponent implements OnInit {
        email: email,
        phoneNumber: phoneNumber,
        loanAmount: loanAmount,
-       softDelete: 'false'
+       softDelete: false
      }
     this.store.dispatch(addApplicant({applicant}));
     this.addForm.reset();

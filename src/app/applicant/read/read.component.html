@@ -17,13 +17,13 @@
                     <td>{{ applicant.softDelete }}</td>
                     <td>
                         <tr>
-                            <a [routerLink]="['/edit', applicant.id]" params="{{applicant.id}}" (click)="editApplicant(applicant)" class="link">Edit</a>
+                            <a button class="btn btn-primary" [routerLink]="['/edit', applicant.id]" params="{{applicant.id}}" (click)="editApplicant(applicant)">Edit</a>
                         </tr>
                         <tr>
-                            <a (click)="deleteApplicant(applicant)" class="link">Delete</a>
+                            <a button class="btn btn-primary" (click)="deleteApplicant(applicant)">Delete</a>
                         </tr>
                         <tr>
-                            <a (click)="softDeleteApplicant(applicant)" class="link">Soft Delete</a>
+                            <a button class="btn btn-primary" (click)="softDeleteApplicant(applicant)">Soft Delete</a>
                         </tr>
                     </td>
                 </ngcontainer>

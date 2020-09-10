@@ -30,7 +30,7 @@ export class EditComponent implements OnInit {
        email: email,
        phoneNumber: phoneNumber,
        loanAmount: loanAmount,
-       softDelete: 'false'
+       softDelete: false
      }
      const editApplicantObserver = this.applicantObjectUnderEdit.subscribe(applicant => update.id = applicant.id);
      editApplicantObserver.unsubscribe();

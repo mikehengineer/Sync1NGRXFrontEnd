@@ -10,6 +10,7 @@ export const updateApplicant = createAction('[Applicant/API] Update Applicant', 
 export const clearUpdateApplicant = createAction('[Applicant/API] Clear Update Applicant');
 export const setEditedApplicantId = createAction('[Applicant/API] Load Applicant For Edit', props<{applicantId: number }>());
 export const loadEditedApplicant = createAction('[Applicant/API] Load Applicant For Edit', props<{applicant: Applicant }>());
+export const softDeleteApplicant =  createAction('[Applicant/API] Soft Delete Applicant', props<{softdelete: Applicant }>());
 
 export const applicantActionTypes = {
     loadApplicants,
@@ -20,5 +21,6 @@ export const applicantActionTypes = {
     updateApplicant,
     loadEditedApplicant,
     clearUpdateApplicant,
-    setEditedApplicantId
+    setEditedApplicantId,
+    softDeleteApplicant
   };

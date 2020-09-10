@@ -43,4 +43,12 @@ export class ApplicantEffects {
           map(ApplicantActions.clearUpdateApplicant)
           )
   );
+
+  softDeleteApplicant = createEffect(() =>
+    this.actions.pipe(
+          ofType(ApplicantActions.softDeleteApplicant),
+          concatMap((action) => this.applicantService.update((action.softdelete.id), action.softdelete))
+          ),
+          { dispatch: false}
+  );
 }

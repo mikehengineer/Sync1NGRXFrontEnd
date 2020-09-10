@@ -29,6 +29,9 @@ export const applicantReducer = createReducer(
     on(applicantActions.deleteApplicant, (state, action) => {
       return adapter.removeOne(action.applicant.id, state)
     }),
+    on(applicantActions.softDeleteApplicant, (state, action) => {
+      return adapter.removeOne(action.softdelete.id, state)
+    }),
     on(applicantActions.loadEditedApplicant, (state, action) => {
         return {...state, applicantOnEdit:action.applicant}
     }),

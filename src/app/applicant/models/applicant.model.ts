@@ -4,5 +4,5 @@ export interface Applicant{
     email: string;
     phoneNumber: string;
     loanAmount: string;
-    softDelete: string;
+    softDelete: boolean;
 }
