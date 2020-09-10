@@ -1,15 +1,20 @@
 import { ApplicantState } from '../reducers/applicant.reducers';
-import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { createSelector } from '@ngrx/store';
 import { selectAll } from '../reducers/applicant.reducers';
+import { getApplicantsState } from '../reducers/index'
 
-export const applicantFeatureSelector = createFeatureSelector<ApplicantState>('applicants');
+
+export const getApplicantState = createSelector(
+  getApplicantsState,
+  state => state.applicantState
+);
 
 export const getAllApplicants = createSelector(
-  applicantFeatureSelector,
+  getApplicantState,
   selectAll
 );
 
 export const fetchApplicantOnEdit = createSelector(
-    applicantFeatureSelector,
+    getApplicantState,
     state => state.applicantOnEdit
 );

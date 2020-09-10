@@ -1,4 +1,4 @@
-import { createReducer, on, State } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { Applicant } from '../models/applicant.model'
 import * as applicantActions from '../actions/applicant.actions'
@@ -13,7 +13,7 @@ export const initialState: ApplicantState = adapter.getInitialState({
     applicantOnEdit: null
 });
 
-export const _applicantReducer = createReducer(
+export const applicantReducer = createReducer(
     initialState,
     on(applicantActions.applicantAdded, (state, action) => {
       return adapter.addOne(action.applicant, state)

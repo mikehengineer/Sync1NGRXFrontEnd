@@ -1,10 +1,10 @@
 import { getAllApplicants } from '../selectors/applicant.selectors';
 import { loadApplicants, loadEditedApplicant, deleteApplicant } from '../actions/applicant.actions';
-import { AppState } from '../reducers/app.state';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Applicant } from '../models/applicant.model';
 import { Component, OnInit } from '@angular/core';
+import { ApplicantState } from '../reducers/applicant.reducers';
 
 @Component({
   selector: 'app-read',
@@ -15,7 +15,7 @@ export class ReadComponent implements OnInit {
 
   applicantObjects: Observable<Applicant[]>;
 
-  constructor(private store: Store<AppState>) { 
+  constructor(private store: Store<ApplicantState>) { 
     this.applicantObjects = this.store.select(getAllApplicants);
   }
 

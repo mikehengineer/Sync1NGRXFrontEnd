@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AppState } from '../reducers/app.state';
 import { Store } from '@ngrx/store';
 import { Applicant } from '../models/applicant.model';
-import { addApplicant, updateApplicant, clearUpdateApplicant } from '../actions/applicant.actions';
+import { addApplicant, updateApplicant } from '../actions/applicant.actions';
 import { Observable } from 'rxjs';
 import { fetchApplicantOnEdit } from '../selectors/applicant.selectors';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ApplicantEffects } from '../effects/applicant.effects';
+import { ApplicantState } from '../reducers/applicant.reducers';
 
 @Component({
   selector: 'app-create',
@@ -33,7 +32,7 @@ export class CreateComponent implements OnInit {
     loanAmount: new FormControl('')
   });
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<ApplicantState>) {
      this.applicantObjectUnderEdit = store.select(fetchApplicantOnEdit);
   }
 
