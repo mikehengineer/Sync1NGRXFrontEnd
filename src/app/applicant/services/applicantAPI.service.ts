@@ -6,7 +6,7 @@ import { Applicant } from '../models/applicant.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ApplicantService {
+export class ApplicantAPIService {
   private headers: HttpHeaders;
   private applicantsAPI = 'https://localhost:44382/api/applicants';
 

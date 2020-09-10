@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Actions, ofType, createEffect } from '@ngrx/effects'
 import { map, concatMap } from 'rxjs/operators'
-import { ApplicantService } from '../services/applicant-service.service'
+import { ApplicantAPIService } from '../services/applicantAPI.service'
 import * as ApplicantActions from '../actions/applicant.actions'
 
 @Injectable()
@@ -9,7 +9,7 @@ export class ApplicantEffects {
 
   constructor(
     private actions: Actions,
-    private applicantService: ApplicantService
+    private applicantService: ApplicantAPIService
   ) {}      
 
   loadApplicants = createEffect(() => 

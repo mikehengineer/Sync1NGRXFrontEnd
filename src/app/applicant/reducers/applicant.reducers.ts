@@ -1,15 +1,17 @@
-import { createReducer, on, State } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { Applicant } from '../models/applicant.model'
 import * as applicantActions from '../actions/applicant.actions'
 
 export interface ApplicantState extends EntityState<Applicant> {
+    applicantEditId: number | null;
     applicantOnEdit: Applicant;
 }
  
 export const adapter: EntityAdapter<Applicant> = createEntityAdapter<Applicant>();
  
 export const initialState: ApplicantState = adapter.getInitialState({
+    applicantEditId: null,
     applicantOnEdit: null
 });
 
@@ -32,7 +34,11 @@ export const applicantReducer = createReducer(
     }),
     on(applicantActions.clearUpdateApplicant, (state) => {
         return {...state, applicantOnEdit: null}
+    }),
+    on(applicantActions.setEditedApplicantId, (state, action) => {
+        return {...state, applicantEditId: action.applicantId}
     })
   );
 
-  export const { selectAll, selectIds, } = adapter.getSelectors();
+  export const getApplicantEditId = (state: ApplicantState) => state.applicantEditId;
+  export const { selectAll, selectIds, selectEntities } = adapter.getSelectors();

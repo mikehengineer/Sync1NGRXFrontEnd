@@ -1,0 +1,50 @@
+<div id= "addForm">
+    <h2>Add Applicant</h2>
+    <form [formGroup]="addForm">
+        Name
+        <div class = "form-group">
+            <input type="text" id="applicantName" name="applicantName"  formControlName="name" class="form-control">
+                <span class="text-danger"
+                *ngIf="addFormControl.name.touched && addFormControl.name.errors?.required">
+                Name is Required
+                </span>
+        </div>
+        <br>
+        Email
+        <div class = "form-group">
+            <input type="text" id="applicantEmail" name="applicantEmail"  formControlName="email" class="form-control">
+                <span class="text-danger"
+                *ngIf="addFormControl.email.touched && addFormControl.email.errors?.required">
+                Email is required
+                </span>
+                <span class="text-danger"
+                *ngIf="addFormControl.email.touched && addFormControl.email.errors?.email">
+                Email Form: example@example
+                </span>
+        </div>
+        <br>
+        Phone Number
+        <div class = "form-group">
+            <input type="text" id="applicantPhoneNumber" name="applicantPhoneNumber"  formControlName="phoneNumber" class="form-control">
+                <span class="text-danger"
+                *ngIf="addFormControl.phoneNumber.touched  && addFormControl.phoneNumber.errors?.required">
+                Phone Number is Required
+                </span>
+                <span class="text-danger"
+                *ngIf="addFormControl.phoneNumber.touched && addFormControl.phoneNumber.errors?.pattern">
+                Phone Number Form: xxx-xxx-xxxx
+                </span>
+        </div>
+        <br>
+        Loan Amount
+        <div class = "form-group">
+            <input type="text" id="applicantLoanAmount" name="applicantLoanAmount"  formControlName="loanAmount" class="form-control">
+                <span class="text-danger"
+                *ngIf="addFormControl.loanAmount.touched && addFormControl.loanAmount.errors?.required">
+                Name is Required
+                </span>
+        </div>
+        <br>
+        <button type="submit" [disabled]="!addForm.valid" [routerLink]="['']" class="btn btn-primary" (click)="addApplicant()">Add</button>
+    </form>
+</div>

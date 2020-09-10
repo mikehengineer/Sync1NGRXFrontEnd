@@ -17,7 +17,7 @@
                     <td>{{ applicant.softDelete }}</td>
                     <td>
                         <tr>
-                            <a (click)="editApplicant(applicant)" class="link">Edit</a>
+                            <a [routerLink]="['/edit', applicant.id]" params="{{applicant.id}}" (click)="editApplicant(applicant)" class="link">Edit</a>
                         </tr>
                         <tr>
                             <a (click)="deleteApplicant(applicant)" class="link">Delete</a>
@@ -29,4 +29,7 @@
                 </ngcontainer>
         </tbody>
     </table>
+    <div id="addContainer">
+        <a routerLink="/add">Add</a>
+    </div>
 </div>
