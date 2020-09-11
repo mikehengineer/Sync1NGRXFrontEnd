@@ -1,51 +1,34 @@
-<div id= "addForm">
-    <h2>Add Applicant</h2>
-    <form [formGroup]="addForm">
-        Name
-        <div class = "form-group">
-            <input type="text" id="applicantName" name="applicantName"  formControlName="name" class="form-control">
-                <span class="text-danger"
-                *ngIf="addFormControl.name.touched && addFormControl.name.errors?.required">
-                Name is Required
-                </span>
+<mat-card id="cardContainer">
+    <mat-card-header>
+        <mat-card-title>Add Applicant</mat-card-title>
+    </mat-card-header>
+    <form id="addContainer" [formGroup]="addForm">
+        <div class="form-group">
+            <mat-form-field appearance="standard">
+            <mat-label>Name</mat-label>
+            <input class="formInput" matInput placeholder="Name" formControlName="name" required>
+            </mat-form-field>
         </div>
-        <br>
-        Email
-        <div class = "form-group">
-            <input type="text" id="applicantEmail" name="applicantEmail"  formControlName="email" class="form-control">
-                <span class="text-danger"
-                *ngIf="addFormControl.email.touched && addFormControl.email.errors?.required">
-                Email is required
-                </span>
-                <span class="text-danger"
-                *ngIf="addFormControl.email.touched && addFormControl.email.errors?.email">
-                Email Form: example@example
-                </span>
+        <div class="form-group">
+            <mat-form-field appearance="standard">
+                <mat-label>Email</mat-label>
+                <input class="formInput" matInput placeholder="pat@example.com" formControlName="email" required>
+              </mat-form-field>
         </div>
-        <br>
-        Phone Number
-        <div class = "form-group">
-            <input type="text" id="applicantPhoneNumber" name="applicantPhoneNumber"  formControlName="phoneNumber" class="form-control">
-                <span class="text-danger"
-                *ngIf="addFormControl.phoneNumber.touched  && addFormControl.phoneNumber.errors?.required">
-                Phone Number is Required
-                </span>
-                <span class="text-danger"
-                *ngIf="addFormControl.phoneNumber.touched && addFormControl.phoneNumber.errors?.pattern">
-                Phone Number Form: xxx-xxx-xxxx
-                </span>
+        <div class ="form-group">
+            <mat-form-field appearance="standard">
+            <mat-label>Phone number</mat-label>
+            <input class="formInput" matInput placeholder="xxx-xxx-xxxx" formControlName="phoneNumber" required>
+            <mat-hint>xxx-xxx-xxxx</mat-hint>
+            </mat-form-field>
         </div>
-        <br>
-        Loan Amount
-        <div class = "form-group">
-            <input type="text" id="applicantLoanAmount" name="applicantLoanAmount"  formControlName="loanAmount" class="form-control">
-                <span class="text-danger"
-                *ngIf="addFormControl.loanAmount.touched && addFormControl.loanAmount.errors?.required">
-                Name is Required
-                </span>
+        <div class="form-group">
+            <mat-form-field appearance="standard">
+            <mat-label>Loan Amount</mat-label>
+            <input class="formInput" matInput placeholder="Loan Amount" formControlName="loanAmount" required>
+            </mat-form-field>
         </div>
-        <br>
-        <button type="submit" [disabled]="!addForm.valid" [routerLink]="['']" class="btn btn-primary" (click)="addApplicant()">Add</button>
-        <button [routerLink]="['']" class="btn btn-primary">Back</button>
+    <a mat-stroked-button type="submit" [disabled]="!addForm.valid" [routerLink]="['']" (click)="addApplicant()">Add</a>
+    <a mat-stroked-button [routerLink]="['']">Back</a>
     </form>
-</div>
+</mat-card>

@@ -45,7 +45,7 @@ export class CreateComponent implements OnInit {
        email: email,
        phoneNumber: phoneNumber,
        loanAmount: loanAmount,
-       softDelete: 'false'
+       softDelete: false
      }
     this.store.dispatch(addApplicant({applicant}));
     this.applicantAddGroup.reset();
@@ -59,7 +59,7 @@ export class CreateComponent implements OnInit {
         email: email,
         phoneNumber: phoneNumber,
         loanAmount: loanAmount,
-        softDelete: 'false'
+        softDelete: false
       }
       const editApplicantObserver = this.applicantObjectUnderEdit.subscribe(applicant => update.id = applicant.id);
       editApplicantObserver.unsubscribe();

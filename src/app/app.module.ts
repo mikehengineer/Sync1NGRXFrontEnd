@@ -15,15 +15,26 @@ import { CustomSerializer } from './routing/customserializer';
 import { AppRoutingModule } from './routing/routing.module';
 import { AddComponent } from './applicant/add/add.component';
 import { EditComponent } from './applicant/edit/edit.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table'; 
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button'; 
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatCardModule } from '@angular/material/card'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     ReadComponent,
     AddComponent,
-    EditComponent
+    EditComponent,
   ],
   imports: [
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatGridListModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
@@ -37,7 +48,8 @@ import { EditComponent } from './applicant/edit/edit.component';
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, 
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [ApplicantAPIService],
   bootstrap: [AppComponent]

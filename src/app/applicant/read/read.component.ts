@@ -1,7 +1,7 @@
 import { getAllApplicants } from '../selectors/applicant.selectors';
 import { loadApplicants, loadEditedApplicant, deleteApplicant, updateApplicant, softDeleteApplicant } from '../actions/applicant.actions';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Applicant } from '../models/applicant.model';
 import { Component, OnInit } from '@angular/core';
 import { AppState } from '../reducers/index';
@@ -13,10 +13,14 @@ import { AppState } from '../reducers/index';
 })
 export class ReadComponent implements OnInit {
 
+  applicantColumns = ['Name', 'Email', 'Phone Number', 'Loan Amount', 'Edit', 'Delete', 'Soft Delete'];
   applicantObjects: Observable<Applicant[]>;
+  applicantObjectArray: Applicant[];
 
   constructor(private store: Store<AppState>) { 
-    this.applicantObjects = this.store.select(getAllApplicants);
+    this.applicantObjects = this.store.select(getAllApplicants)
+    const appObs = this.applicantObjects.subscribe(applicant => this.applicantObjectArray = applicant);
+    console.log('applicantObjectArray: ', this.applicantObjectArray[1]);
   }
 
   public editApplicant = function(applicant: Applicant){

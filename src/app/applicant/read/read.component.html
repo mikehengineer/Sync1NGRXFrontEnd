@@ -1,35 +1,50 @@
-<div class = applicantsHolder *ngIf="applicantObjects">
-    <table id="applicantsTable">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Loan Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-                <ngcontainer *ngFor="let applicant of applicantObjects | async"> 
-                    <td>{{ applicant.name }}</td>
-                    <td>{{ applicant.email }}</td>
-                    <td>{{ applicant.phoneNumber }}</td>
-                    <td>{{ applicant.loanAmount }}</td>
-                    <td>{{ applicant.softDelete }}</td>
-                    <td>
-                        <tr>
-                            <a button class="btn btn-primary" [routerLink]="['/edit', applicant.id]" params="{{applicant.id}}" (click)="editApplicant(applicant)">Edit</a>
-                        </tr>
-                        <tr>
-                            <a button class="btn btn-primary" (click)="deleteApplicant(applicant)">Delete</a>
-                        </tr>
-                        <tr>
-                            <a button class="btn btn-primary" (click)="softDeleteApplicant(applicant)">Soft Delete</a>
-                        </tr>
-                    </td>
-                </ngcontainer>
-        </tbody>
-    </table>
-    <div id="addContainer">
-        <a routerLink="/add">Add</a>
-    </div>
+<div id="mainReadContainer">
+  <div id="tablecontainer" *ngIf="applicantObjects | async">
+      <table id="table" mat-table [dataSource]="applicantObjects">
+
+          <ng-container matColumnDef="Name">
+            <th mat-header-cell class="headerCell" *matHeaderCellDef> Name </th>
+            <td mat-cell class="nameCell" *matCellDef="let applicant">{{ applicant.name }}</td>
+          </ng-container>
+        
+          <ng-container matColumnDef="Email">
+            <th mat-header-cell class="headerCell" *matHeaderCellDef> Email </th>
+            <td mat-cell class="emailCell" *matCellDef="let applicant">{{ applicant.email }} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="Phone Number">
+            <th mat-header-cell class="headerCell" *matHeaderCellDef> Phone Number </th>
+            <td mat-cell class="phoneNumberCell" *matCellDef="let applicant">{{ applicant.phoneNumber }} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="Loan Amount">
+            <th mat-header-cell class="headerCell" *matHeaderCellDef> Loan Amount </th>
+            <td mat-cell class="loanAmountCell" *matCellDef="let applicant">{{ applicant.loanAmount }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Edit">
+            <th mat-header-cell id="editCell" *matHeaderCellDef> Edit</th>
+            <td mat-cell class="Edit" *matCellDef="let applicant">
+                <a mat-stroked-button [routerLink]="['/edit', applicant.id]" params="{{applicant.id}}" (click)="editApplicant(applicant)">Edit</a>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Delete">
+            <th mat-header-cell id="deleteCell" *matHeaderCellDef> Delete</th>
+            <td mat-cell class="deleteButtonCell" *matCellDef="let applicant">
+              <a mat-stroked-button (click)="deleteApplicant(applicant)">Delete</a>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Soft Delete">
+            <th mat-header-cell id="softDeleteCell" *matHeaderCellDef> Soft Delete</th>
+            <td mat-cell class="softDeleteButtonCell" *matCellDef="let applicant">
+              <a mat-stroked-button (click)="softDeleteApplicant(applicant)">Soft Delete</a>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="applicantColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: applicantColumns;"></tr>
+        </table>
+        <a mat-stroked-button id="addButton" [routerLink]="['/add']" (click)="addApplicant()">Add</a>
+  </div>
+  <div id="mainBottomContainer"></div>
 </div>
+

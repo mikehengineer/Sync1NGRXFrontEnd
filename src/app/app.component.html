@@ -1,3 +1,30 @@
-<section>
-    <router-outlet></router-outlet>
-</section>
+<div id="mainContainer">
+    <mat-grid-list cols = "20" rowHeight = "5vh">
+        <mat-grid-tile class="outerTile"
+        [colspan] = "5"
+        [rowspan] = "3">1
+        </mat-grid-tile>
+        <mat-grid-tile class="topTile"
+        [colspan] = "10"
+        [rowspan] = "3">2
+        </mat-grid-tile>
+        <mat-grid-tile class="outerTile"
+        [colspan] = "5"
+        [rowspan] = "3">3
+        </mat-grid-tile>
+
+        <mat-grid-tile class="outerTile"
+        [colspan] = "5"
+        [rowspan] = "17">5
+        </mat-grid-tile>
+        <mat-grid-tile class="mainTile"
+        [colspan] = "10"
+        [rowspan] = "17"><router-outlet></router-outlet>
+        </mat-grid-tile>
+        <mat-grid-tile class="outerTile"
+        [colspan] = "5"
+        [rowspan] = "17">4
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
