@@ -10,25 +10,28 @@
   border: 1px solid #0F1112
   color: #E3E9E9
   background: #4562AD
+  table-layout: fixed
+  width: 100%
 
-.nameCell
-  padding: 8px
-  margin: 8px 
-  height: 3rem
+.mat-header-cell
+  width: 3em
+
+.mat-header-cell:nth-child(4)
+  width: 1.7em
+
+
+#deleteCell
+  width: 1.2em
+
+#editCell
+  width: 1em
+
+#softDeleteCell
+  width: .5em
 
 .emailCell, .nameCell, .loanAmountCell, .phoneNumberCell
   font-size: 1.2em
-
-.emailCell, .nameCell, .loanAmountCell
-  min-width: 17rem
-
-.phoneNumberCell
-  min-width: 14rem
- 
-.loanAmountCell
-  // padding-left: 2em
-  min-width: 10rem
-
+  
 .headerCell, #editCell, #deleteCell, #softDeleteCell
   background-color: #6396D6
   color: #0F1112
