@@ -1,27 +1,48 @@
-#mainContainer
-    height: 100vh
-    width: 100vw
-    overflow: hidden
-    background-color:#0F1112
+@use '../styles'
 
-.outerTile
-    background-color:#0F1112
-    
-.topTile 
-    background: #0F1112
+#mainContainer 
+    height: 100%
+    width: 100%
+    background: styles.$color-purple
+    display: grid
+    grid-template-columns: repeat(9, 1fr)
+    grid-template-rows:  repeat(17, 1fr)
+    grid-column-gap: 0px
+    grid-row-gap: 0px
+
+
+.div1  
+    grid-area: 1 / 1 / 2 / 3
+.div2  
+    grid-area: 1 / 3 / 2 / 8 
+    display: flex
+    justify-content: center
+    align-items: center
+.div3  
+    grid-area: 1 / 8 / 2 / 10 
+.div4  
+    grid-area: 2 / 1 / 18 / 3 
+.div5  
+    grid-area: 2 / 3 / 18 / 8 
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+.div6  
+    grid-area: 2 / 8 / 18 / 10 
+
+#centerspacer
+    flex: 1 1 20%
+
+#centerContainer
+    flex: 1 1 80%
+
+.div1, .div3, .div2
+    background-color: styles.$color-light
 
 #titleContainer
-    font-size: 4em
+    display: flex
+    flex-direction: column
+    font-size: 2.5rem
     font-weight: 550
-    color: #E3E9E9
 
-#mainTile
-    background: #4A6B8B
-
-.mat-figure
-    align-items: top !important
-
-#bottomTile
-    background: #4A6B8B
-
-    

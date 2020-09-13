@@ -16,6 +16,7 @@ import { getCurrentRouteState } from '../selectors/applicant.selectors'
 export class EditComponent implements OnInit {
   applicantId:number;
   applicantEditObject: Applicant;
+  applicantFormFill: Applicant;
   applicantObjectUnderEdit: Observable<Applicant>;
   editForm: FormGroup;
 
@@ -41,6 +42,7 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     this.editBuildForm();
     this.loadApplicantForEdit();
+    this.setEditFormValues();
   }
 
   loadApplicantForEdit() {
@@ -51,6 +53,8 @@ export class EditComponent implements OnInit {
     const applicantId = this.applicantId;
     this.store.dispatch(setEditedApplicantId({applicantId}));
     this.applicantObjectUnderEdit = this.store.select(getCurrentApplicant);
+    const applicantFillSubscriber = this.applicantObjectUnderEdit.subscribe(applicant => this.applicantFormFill = applicant);
+    applicantFillSubscriber.unsubscribe();
     routeSubscription.unsubscribe();
   }
 
@@ -61,6 +65,16 @@ export class EditComponent implements OnInit {
     phoneNumber: ['', [Validators.required, Validators.pattern("[0-9]{3}-[0-9]{3}-[0-9]{4}$")]],
     loanAmount: ['', Validators.required]
     });
+  }
+
+  setEditFormValues() {
+    this.editForm.setValue({
+      name: this.applicantFormFill.name,
+      email: this.applicantFormFill.email,
+      phoneNumber: this.applicantFormFill.phoneNumber,
+      loanAmount: this.applicantFormFill.loanAmount,
+      softDelete: false
+    })
   }
 
   get editFormControl() {
