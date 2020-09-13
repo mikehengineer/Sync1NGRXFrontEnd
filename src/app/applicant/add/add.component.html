@@ -1,7 +1,10 @@
 <mat-card id="cardContainer">
     <mat-card-header>
-        <mat-card-title>Add Applicant</mat-card-title>
+        <mat-card-title>
+            <span id="addSpan">Add Applicant</span>
+        </mat-card-title>
     </mat-card-header>
+    <mat-card-content>
     <form id="addContainer" [formGroup]="addForm">
         <div class="form-group">
             <mat-form-field appearance="standard">
@@ -11,15 +14,14 @@
         </div>
         <div class="form-group">
             <mat-form-field appearance="standard">
-                <mat-label>Email</mat-label>
-                <input class="formInput" matInput placeholder="pat@example.com" formControlName="email" required>
+                <mat-label>Email </mat-label>
+                <input class="formInput" resizeToFitContent="true" matInput placeholder="pat@example.com" formControlName="email" required>
               </mat-form-field>
         </div>
         <div class ="form-group">
             <mat-form-field appearance="standard">
             <mat-label>Phone number</mat-label>
             <input class="formInput" matInput placeholder="xxx-xxx-xxxx" formControlName="phoneNumber" required>
-            <mat-hint>xxx-xxx-xxxx</mat-hint>
             </mat-form-field>
         </div>
         <div class="form-group">
@@ -28,7 +30,8 @@
             <input class="formInput" matInput placeholder="Loan Amount" formControlName="loanAmount" required>
             </mat-form-field>
         </div>
-    <a mat-stroked-button type="submit" [disabled]="!addForm.valid" [routerLink]="['']" (click)="addApplicant()">Add</a>
-    <a mat-stroked-button [routerLink]="['']">Back</a>
+    <button mat-stroked-button [disabled]="!addForm.valid" [routerLink]="['']" (click)="addApplicant()">Add</button>
+    <button mat-stroked-button [routerLink]="['']">Back</button>
     </form>
+    </mat-card-content>
 </mat-card>

@@ -1,51 +1,37 @@
-<div id= "editForm" *ngIf="applicantObjectUnderEdit | async as applicantEdit">
-    <h2>Edit Applicant</h2>
-    <form [formGroup]="editForm">
-        Name: {{applicantEdit.name}}
-        <div class = "form-group">
-            <input type="text" id="applicantName" name="applicantName"  formControlName="name" class="form-control">
-                <span class="text-danger"
-                *ngIf="(editFormControl.name.touched || submitted) && editFormControl.name.errors?.required">
-                Name is Required
-                </span>
+<mat-card id="cardContainer">
+    <mat-card-header>
+        <mat-card-title>
+            <span id="editSpan">Edit Applicant</span>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+    <form id="editContainer" [formGroup]="editForm" *ngIf="applicantObjectUnderEdit | async as applicantEdit">
+        <div class="form-group">
+            <mat-form-field appearance="standard">
+            <mat-label>{{applicantEdit.name}}</mat-label>
+            <input class="formInput" matInput placeholder="{{applicantEdit.name}}" formControlName="name" required>
+            </mat-form-field>
         </div>
-        <br>
-        Email: {{applicantEdit.email}}
-        <div class = "form-group">
-            <input type="text" id="applicantEmail" name="applicantEmail"  formControlName="email" class="form-control">
-                <span class="text-danger"
-                *ngIf="(editFormControl.email.touched || submitted) && editFormControl.email.errors?.required">
-                Email is required
-                </span>
-                <span class="text-danger"
-                *ngIf="(editFormControl.email.touched || submitted) && editFormControl.email.errors?.email">
-                Email Form: example@example
-                </span>
+        <div class="form-group">
+            <mat-form-field appearance="standard">
+                <mat-label>{{applicantEdit.email}}</mat-label>
+                <input class="formInput" resizeToFitContent="true" matInput placeholder="{{applicantEdit.email}}" formControlName="email" required>
+              </mat-form-field>
         </div>
-        <br>
-        Phone Number: {{applicantEdit.phoneNumber}}
-        <div class = "form-group">
-            <input type="text" id="applicantPhoneNumber" name="applicantPhoneNumber"  formControlName="phoneNumber" class="form-control">
-                <span class="text-danger"
-                *ngIf="(editFormControl.phoneNumber.touched || submitted) && editFormControl.phoneNumber.errors?.required">
-                Phone Number is Required
-                </span>
-                <span class="text-danger"
-                *ngIf="(editFormControl.phoneNumber.touched || submitted) && editFormControl.phoneNumber.errors?.pattern">
-                Phone Number Form: xxx-xxx-xxxx
-                </span>
+        <div class ="form-group">
+            <mat-form-field appearance="standard">
+            <mat-label>{{applicantEdit.phoneNumber}}</mat-label>
+            <input class="formInput" matInput placeholder="{{applicantEdit.phoneNumber}}" formControlName="phoneNumber" required>
+            </mat-form-field>
         </div>
-        <br>
-        Loan Amount:{{applicantEdit.loanAmount}}
-        <div class = "form-group">
-            <input type="text" id="applicantLoanAmount" name="applicantLoanAmount"  formControlName="loanAmount" class="form-control">
-                <span class="text-danger"
-                *ngIf="(editFormControl.loanAmount.touched || submitted) && editFormControl.loanAmount.errors?.required">
-                Name is Required
-                </span>
+        <div class="form-group">
+            <mat-form-field appearance="standard">
+            <mat-label>{{applicantEdit.loanAmount}}</mat-label>
+            <input class="formInput" matInput placeholder="{{applicantEdit.loanAmount}}" formControlName="loanAmount" required>
+            </mat-form-field>
         </div>
-        <br>
-        <button type="submit" [disabled]="!editForm.valid" [routerLink]="['']" class="btn btn-primary" (click)="editApplicant()">Save</button>
-        <button [routerLink]="['']" class="btn btn-primary">Back</button>
+    <button mat-stroked-button [disabled]="!editForm.valid" [routerLink]="['']" (click)="editApplicant()">Edit</button>
+    <button mat-stroked-button [routerLink]="['']">Back</button>
     </form>
-</div>
+    </mat-card-content>
+</mat-card>

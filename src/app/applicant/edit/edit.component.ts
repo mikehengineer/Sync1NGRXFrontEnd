@@ -33,8 +33,8 @@ export class EditComponent implements OnInit {
        softDelete: false
      }
      const editApplicantObserver = this.applicantObjectUnderEdit.subscribe(applicant => update.id = applicant.id);
-     editApplicantObserver.unsubscribe();
      this.store.dispatch(updateApplicant({update}));
+     editApplicantObserver.unsubscribe();
      this.editForm.reset();
   }
 
@@ -51,7 +51,7 @@ export class EditComponent implements OnInit {
     const applicantId = this.applicantId;
     this.store.dispatch(setEditedApplicantId({applicantId}));
     this.applicantObjectUnderEdit = this.store.select(getCurrentApplicant);
-    routeSubscription.unsubscribe;
+    routeSubscription.unsubscribe();
   }
 
   editBuildForm() {

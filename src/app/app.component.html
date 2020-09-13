@@ -1,29 +1,36 @@
 <div id="mainContainer">
-    <mat-grid-list cols = "20" rowHeight = "5vh">
+    <mat-grid-list cols = "20" rowHeight = "5vh" [gutterSize]="'0'">
         <mat-grid-tile class="outerTile"
         [colspan] = "5"
-        [rowspan] = "3">1
+        [rowspan] = "2">
         </mat-grid-tile>
         <mat-grid-tile class="topTile"
         [colspan] = "10"
-        [rowspan] = "3">2
+        [rowspan] = "2">
+        <div id="titleContainer">
+            <span>Applicant Portal</span>
+        </div>
         </mat-grid-tile>
         <mat-grid-tile class="outerTile"
         [colspan] = "5"
-        [rowspan] = "3">3
+        [rowspan] = "2">
         </mat-grid-tile>
 
         <mat-grid-tile class="outerTile"
         [colspan] = "5"
-        [rowspan] = "17">5
+        [rowspan] = "17">
         </mat-grid-tile>
-        <mat-grid-tile class="mainTile"
+        <mat-grid-tile id="mainTile"
         [colspan] = "10"
-        [rowspan] = "17"><router-outlet></router-outlet>
+        [rowspan] = "14"><router-outlet></router-outlet>
         </mat-grid-tile>
         <mat-grid-tile class="outerTile"
         [colspan] = "5"
-        [rowspan] = "17">4
+        [rowspan] = "17">
+        </mat-grid-tile>
+        <mat-grid-tile id="bottomTile"
+        [colspan] = "10"
+        [rowspan] = "10">
         </mat-grid-tile>
     </mat-grid-list>
 </div>

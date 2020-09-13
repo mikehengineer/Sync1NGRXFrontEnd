@@ -21,6 +21,7 @@ export class ReadComponent implements OnInit {
     this.applicantObjects = this.store.select(getAllApplicants)
     const appObs = this.applicantObjects.subscribe(applicant => this.applicantObjectArray = applicant);
     console.log('applicantObjectArray: ', this.applicantObjectArray[1]);
+    appObs.unsubscribe();
   }
 
   public editApplicant = function(applicant: Applicant){
