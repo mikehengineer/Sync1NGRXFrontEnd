@@ -8,8 +8,9 @@ export const applicantAdded = createAction('[Applicant/API] Applicant Added', pr
 export const deleteApplicant = createAction('[Applicant/API] Delete Applicant', props<{ applicant: Applicant }>());
 export const updateApplicant = createAction('[Applicant/API] Update Applicant', props<{ update: Applicant }>());
 export const clearUpdateApplicant = createAction('[Applicant/API] Clear Update Applicant');
-export const setEditedApplicantId = createAction('[Applicant/API] Load Applicant For Edit', props<{applicantId: number }>());
-export const loadEditedApplicant = createAction('[Applicant/API] Load Applicant For Edit', props<{applicant: Applicant }>());
+export const setEditedApplicantId = createAction('[Applicant/API] Applicant Edit ID Set', props<{applicantId: number }>());
+export const loadEditedApplicant = createAction('[Applicant/API] GET Applicant For Edit', props<{ applicantId: number }>());
+export const editedApplicantLoaded = createAction('[Applicant/API] Load Applicant For Edit', props<{ applicant: Applicant }>());
 export const softDeleteApplicant =  createAction('[Applicant/API] Soft Delete Applicant', props<{softdelete: Applicant }>());
 
 export const applicantActionTypes = {
@@ -22,5 +23,6 @@ export const applicantActionTypes = {
     loadEditedApplicant,
     clearUpdateApplicant,
     setEditedApplicantId,
-    softDeleteApplicant
+    softDeleteApplicant,
+    editedApplicantLoaded
   };

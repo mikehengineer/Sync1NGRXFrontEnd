@@ -15,10 +15,18 @@ export class ApplicantEffects {
   loadApplicants = createEffect(() => 
     this.actions.pipe(
           ofType(ApplicantActions.loadApplicants),
-          concatMap(() => this.applicantService.get()),
+          concatMap(() => this.applicantService.getAll()),
           map(applicants => ApplicantActions.applicantsLoaded({applicants}))
           )
   ); 
+
+  loadEditApplicant = createEffect(() =>
+    this.actions.pipe(
+          ofType(ApplicantActions.loadEditedApplicant),
+          concatMap((action) => this.applicantService.getApplicantById(action.applicantId)),
+          map(applicant => ApplicantActions.editedApplicantLoaded({applicant}))
+          )
+  );
           
   addApplicant = createEffect(() => 
     this.actions.pipe(

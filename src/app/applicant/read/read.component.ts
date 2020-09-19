@@ -1,5 +1,5 @@
 import { getAllApplicants } from '../selectors/applicant.selectors';
-import { loadApplicants, loadEditedApplicant, deleteApplicant, updateApplicant, softDeleteApplicant } from '../actions/applicant.actions';
+import { loadApplicants, deleteApplicant, softDeleteApplicant } from '../actions/applicant.actions';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { Applicant } from '../models/applicant.model';
@@ -20,12 +20,7 @@ export class ReadComponent implements OnInit {
   constructor(private store: Store<AppState>) { 
     this.applicantObjects = this.store.select(getAllApplicants)
     const appObs = this.applicantObjects.subscribe(applicant => this.applicantObjectArray = applicant);
-    console.log('applicantObjectArray: ', this.applicantObjectArray[1]);
     appObs.unsubscribe();
-  }
-
-  public editApplicant = function(applicant: Applicant){
-    this.store.dispatch(loadEditedApplicant({applicant}));
   }
 
   public deleteApplicant = function(applicant: Applicant){

@@ -5,20 +5,21 @@ import * as applicantActions from '../actions/applicant.actions'
 
 export interface ApplicantState extends EntityState<Applicant> {
     applicantEditId: number | null;
-    applicantOnEdit: Applicant;
 }
  
 export const adapter: EntityAdapter<Applicant> = createEntityAdapter<Applicant>();
  
 export const initialState: ApplicantState = adapter.getInitialState({
     applicantEditId: null,
-    applicantOnEdit: null
 });
 
 export const applicantReducer = createReducer(
     initialState,
     on(applicantActions.applicantAdded, (state, action) => {
       return adapter.addOne(action.applicant, state)
+    }),
+    on(applicantActions.editedApplicantLoaded, (state, action) => {
+      return adapter.setOne(action.applicant, state)
     }),
     on(applicantActions.updateApplicant, (state, action) => {
       return adapter.setOne(action.update, state)
@@ -31,9 +32,6 @@ export const applicantReducer = createReducer(
     }),
     on(applicantActions.softDeleteApplicant, (state, action) => {
       return adapter.removeOne(action.softdelete.id, state)
-    }),
-    on(applicantActions.loadEditedApplicant, (state, action) => {
-        return {...state, applicantOnEdit:action.applicant}
     }),
     on(applicantActions.clearUpdateApplicant, (state) => {
         return {...state, applicantOnEdit: null}

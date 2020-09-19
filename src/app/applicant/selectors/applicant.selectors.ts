@@ -14,11 +14,6 @@ export const getAllApplicants = createSelector(
   selectAll
 );
 
-export const fetchApplicantOnEdit = createSelector(
-  getApplicantState,
-  state => state.applicantOnEdit
-);
-
 export const getCurrentRouteState = createSelector(
   getRouterState,
   state => state.state

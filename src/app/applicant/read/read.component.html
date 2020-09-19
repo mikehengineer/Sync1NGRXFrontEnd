@@ -20,7 +20,7 @@
       <ng-container matColumnDef="Edit">
         <th mat-header-cell id="editCell" *matHeaderCellDef> Edit</th>
         <td mat-cell class="Edit" *matCellDef="let applicant">
-            <a mat-stroked-button [routerLink]="['/edit', applicant.id]" params="{{applicant.id}}" (click)="editApplicant(applicant)">Edit</a>
+            <a mat-stroked-button [routerLink]="['/edit', applicant.id]" params="{{applicant.id}}">Edit</a>
         </td>
       </ng-container>
       <ng-container matColumnDef="Delete">

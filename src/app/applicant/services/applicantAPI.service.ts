@@ -14,8 +14,14 @@ export class ApplicantAPIService {
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
   }
 
-  public get(): Observable<Applicant[]> {
+  public getAll(): Observable<Applicant[]> {
     return this.http.get<Applicant[]>(this.applicantsAPI, {headers: this.headers});
+  }
+
+  public getApplicantById(id): Observable<Applicant>{
+    console.log('inside getapplicantbyid');
+    console.log('id: ', id);
+    return this.http.get<Applicant>(this.applicantsAPI + '/' + id, {headers: this.headers});
   }
 
   public add(applicant: Applicant): Observable<Applicant> {
