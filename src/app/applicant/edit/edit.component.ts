@@ -8,7 +8,7 @@ import { getCurrentApplicant } from '../selectors/applicant.selectors';
 import { updateApplicant, setEditedApplicantId, loadApplicants, loadEditedApplicant } from '../actions/applicant.actions';
 import { getCurrentRouteState } from '../selectors/applicant.selectors'
 import { ActivatedRoute } from '@angular/router';
-import { concatMap, map, mergeMap, take, tap } from 'rxjs/operators';
+import { concatMap, filter, map, mergeMap, take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit',
@@ -58,10 +58,16 @@ export class EditComponent implements OnInit {
         this.store.dispatch(setEditedApplicantId({applicantId}));
     });
     this.applicantObjectUnderEdit = this.store.select(getCurrentApplicant);
-    const applicantFillSubscriber = this.applicantObjectUnderEdit.pipe(take(1)).subscribe(applicant => this.applicantFormFill = applicant);
+
+    const applicantFillSubscriber = this.applicantObjectUnderEdit
+      .pipe(filter(applicant => !!applicant), take(1))
+      .subscribe(applicant => 
+      this.applicantFormFill = applicant);
     this.setEditFormValues(this.applicantFormFill);
-    applicantFillSubscriber.unsubscribe();
-    routeSubscription.unsubscribe();
+
+
+    // applicantFillSubscriber.unsubscribe();
+    // routeSubscription.unsubscribe();
 }
 
   editBuildForm() {
