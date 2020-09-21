@@ -54,16 +54,17 @@ export class EditComponent implements OnInit {
     const routeSubscription = this.store.select(getCurrentRouteState).pipe(take(1)).subscribe(route => {
         const applicantId = route.params.applicantId;
         console.log("route params id: ", applicantId);
-        this.store.dispatch(loadEditedApplicant({applicantId}));
         this.store.dispatch(setEditedApplicantId({applicantId}));
+        this.store.dispatch(loadEditedApplicant({applicantId}));
     });
     this.applicantObjectUnderEdit = this.store.select(getCurrentApplicant);
 
     const applicantFillSubscriber = this.applicantObjectUnderEdit
       .pipe(filter(applicant => !!applicant), take(1))
-      .subscribe(applicant => 
-      this.applicantFormFill = applicant);
-    this.setEditFormValues(this.applicantFormFill);
+      .subscribe(applicant => {
+      this.applicantFormFill = applicant;
+      this.setEditFormValues(this.applicantFormFill)
+  });
 
 
     // applicantFillSubscriber.unsubscribe();
